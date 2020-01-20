@@ -61,7 +61,8 @@
 					if (this.cards.length > 0) {
 						
 						// set default top card position and scale
-						this.topCard.style.transform = 'translateX(-50%) translateY(-50%) rotate(0deg) rotateY(0deg) scale(1)'
+						this.topCard.style.transform =
+							'translateX(-50%) translateY(-50%) rotate(0deg) rotateY(0deg) scale(1)'
 						
 						// destroy previous Hammer instance, if present
 						if (this.hammer) this.hammer.destroy()
@@ -69,7 +70,9 @@
 						// listen for tap and pan gestures on top card
 						this.hammer = new Hammer(this.topCard)
 						this.hammer.add(new Hammer.Tap())
-						this.hammer.add(new Hammer.Pan({ position: Hammer.position_ALL, threshold: 0 }))
+						this.hammer.add(new Hammer.Pan({
+							position: Hammer.position_ALL, threshold: 0
+						}))
 						
 						// pass events data to custom callbacks
 						this.hammer.on('tap', (e) => { this.onTap(e) })
@@ -91,12 +94,14 @@
 					this.topCard.style.transition = 'transform 100ms ease-out'
 					
 					// rotate
-					this.topCard.style.transform = 'translateX(-50%) translateY(-50%) rotate(0deg) rotateY(' + rotateY + 'deg) scale(1)'
+					this.topCard.style.transform =
+						'translateX(-50%) translateY(-50%) rotate(0deg) rotateY(' + rotateY + 'deg) scale(1)'
 					
 					// wait transition end
 					setTimeout(() => {
 						// reset transform properties
-						this.topCard.style.transform = 'translateX(-50%) translateY(-50%) rotate(0deg) rotateY(0deg) scale(1)'
+						this.topCard.style.transform =
+							'translateX(-50%) translateY(-50%) rotate(0deg) rotateY(0deg) scale(1)'
 					}, 100)
 					
 				}
@@ -121,7 +126,8 @@
 						let bounds = this.topCard.getBoundingClientRect()
 						
 						// get finger position on top card, top (1) or bottom (-1)
-						this.isDraggingFrom = (e.center.y - bounds.top) > this.topCard.clientHeight / 2 ? -1 : 1
+						this.isDraggingFrom =
+							(e.center.y - bounds.top) > this.topCard.clientHeight / 2 ? -1 : 1
 						
 					}
 					
@@ -143,10 +149,12 @@
 					let scale = (95 + (5 * Math.abs(propX))) / 100
 					
 					// move top card
-					this.topCard.style.transform = 'translateX(' + posX + 'px) translateY(' + posY + 'px) rotate(' + deg + 'deg) rotateY(0deg) scale(1)'
+					this.topCard.style.transform =
+						'translateX(' + posX + 'px) translateY(' + posY + 'px) rotate(' + deg + 'deg) rotateY(0deg) scale(1)'
 					
 					// scale next card
-					if (this.nextCard) this.nextCard.style.transform = 'translateX(-50%) translateY(-50%) rotate(0deg) rotateY(0deg) scale(' + scale + ')'
+					if (this.nextCard) this.nextCard.style.transform =
+						'translateX(-50%) translateY(-50%) rotate(0deg) rotateY(0deg) scale(' + scale + ')'
 					
 					if (e.isFinal) {
 						
@@ -182,7 +190,8 @@
 						if (successful) {
 				
 							// throw card in the chosen direction
-							this.topCard.style.transform = 'translateX(' + posX + 'px) translateY(' + posY + 'px) rotate(' + deg + 'deg)'
+							this.topCard.style.transform =
+								'translateX(' + posX + 'px) translateY(' + posY + 'px) rotate(' + deg + 'deg)'
 						
 							// wait transition end
 							setTimeout(() => {
@@ -197,8 +206,10 @@
 						} else {
 				  
 							// reset cards position
-							this.topCard.style.transform = 'translateX(-50%) translateY(-50%) rotate(0deg) rotateY(0deg) scale(1)'
-							if (this.nextCard) this.nextCard.style.transform = 'translateX(-50%) translateY(-50%) rotate(0deg) rotateY(0deg) scale(0.95)'
+							this.topCard.style.transform =
+								'translateX(-50%) translateY(-50%) rotate(0deg) rotateY(0deg) scale(1)'
+							if (this.nextCard) this.nextCard.style.transform =
+								'translateX(-50%) translateY(-50%) rotate(0deg) rotateY(0deg) scale(0.95)'
 				  
 						}
 				
@@ -212,7 +223,8 @@
 					
 					card.classList.add('card')
 					
-					card.style.backgroundImage = "url('https://picsum.photos/320/320/?random=" + Math.round(Math.random()*1000000) + "')"
+					card.style.backgroundImage =
+						"url('https://picsum.photos/320/320/?random=" + Math.round(Math.random()*1000000) + "')"
 					
 					if (this.board.firstChild) {
 						this.board.insertBefore(card, this.board.firstChild)
