@@ -102,17 +102,17 @@
                 // get finger position on top card
                 let propX = (e.center.x - e.target.getBoundingClientRect().left) / e.target.clientWidth
 
-                // get degree of Y rotation (+/-15 degrees)
+                // get rotation degrees around Y axis (+/- 15) based on finger position
                 let rotateY = 15 * (propX < 0.05 ? -1 : 1)
 
-                // change the transition property
+                // enable transform transition
                 this.topCard.style.transition = 'transform 100ms ease-out'
 
-                // rotate
+                // apply rotation around Y axis
                 this.topCard.style.transform =
                     'translateX(-50%) translateY(-50%) rotate(0deg) rotateY(' + rotateY + 'deg) scale(1)'
 
-                // wait transition end
+                // wait for transition end
                 setTimeout(() => {
                     // reset transform properties
                     this.topCard.style.transform =
@@ -146,7 +146,7 @@
 
                 }
 
-                // calculate new coordinates
+                // get new coordinates
                 let posX = e.deltaX + this.startPosX
                 let posY = e.deltaY + this.startPosY
 
@@ -157,17 +157,17 @@
                 // get swipe direction, left (-1) or right (1)
                 let dirX = e.deltaX < 0 ? -1 : 1
 
-                // calculate rotation, between 0 and +/- 45 deg
+                // get degrees of rotation, between 0 and +/- 45
                 let deg = this.isDraggingFrom * dirX * Math.abs(propX) * 45
 
-                // calculate scale ratio, between 95 and 100 %
+                // get scale ratio, between .95 and 1
                 let scale = (95 + (5 * Math.abs(propX))) / 100
 
-                // move top card
+                // move and rotate top card
                 this.topCard.style.transform =
                     'translateX(' + posX + 'px) translateY(' + posY + 'px) rotate(' + deg + 'deg) rotateY(0deg) scale(1)'
 
-                // scale next card
+                // scale up next card
                 if (this.nextCard) this.nextCard.style.transform =
                     'translateX(-50%) translateY(-50%) rotate(0deg) rotateY(0deg) scale(' + scale + ')'
 
@@ -181,7 +181,7 @@
                     this.topCard.style.transition = 'transform 200ms ease-out'
                     if (this.nextCard) this.nextCard.style.transition = 'transform 100ms linear'
 
-                    // check threshold
+                    // check threshold and movement direction
                     if (propX > 0.25 && e.direction == Hammer.DIRECTION_RIGHT) {
 
                         successful = true
@@ -220,7 +220,7 @@
 
                     } else {
 
-                        // reset cards position
+                        // reset cards position and size
                         this.topCard.style.transform =
                             'translateX(-50%) translateY(-50%) rotate(0deg) rotateY(0deg) scale(1)'
                         if (this.nextCard) this.nextCard.style.transform =
