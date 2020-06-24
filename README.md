@@ -1,6 +1,6 @@
 # likecarousel
 
-Build a Full Featured Tinder Like Carousel in Vanilla JavaScript
+Build a Full Featured "Like Carousel" in Vanilla JavaScript
 
 [Read full article on Medium](https://medium.com/@simonepm/build-a-full-featured-tinder-like-carousel-in-vanilla-javascript-part-i-44ca3a906450)
 
